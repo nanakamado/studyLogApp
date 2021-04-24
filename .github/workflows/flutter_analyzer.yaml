@@ -19,4 +19,5 @@ jobs:
         with:
           channel: 'beta'
       - run: flutter pub get
+        working-directory: ./study_log_app
       - run: flutter analyze
