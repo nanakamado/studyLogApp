@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText:"やった事"
               ),
             ),
-            RaisedButton(
+            new RaisedButton(
               onPressed: _submission,
               child: Text('送信'),
             )
