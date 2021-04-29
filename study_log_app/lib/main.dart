@@ -41,7 +41,6 @@ class commentRequest {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _formKey = GlobalKey<FormState>();
   String _userId = '';
   String _comment = '';
 
