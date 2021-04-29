@@ -72,9 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText:"やった事"
               ),
             ),
-            new RaisedButton(
+            RaisedButton(
               onPressed: _submission,
-              child: Text('送信'),
+              color: Colors.blue,
+              child: const Text('送信'),
             )
           ],
         ),
@@ -82,9 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   void _submission() {
-    var request = new commentRequest(userId: this._userId, comment: this._comment);
+    // var request = new commentRequest(userId: this._userId, comment: this._comment);
     var url = "http://127.0.0.0/commentStudyLog";
-    print(request);
     print(url);
   }
 
