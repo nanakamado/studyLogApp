@@ -27,14 +27,24 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class commentRequest {
+  final String userId;
+  final String comment;
+  commentRequest({
+    this.userId,
+    this.comment,
+  });
+  Map<String, dynamic> toJson() => {
+    'name': userId,
+    'comment': comment,
+  };
+}
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class _MyHomePageState extends State<MyHomePage> {
+  final _formKey = GlobalKey<FormState>();
+  String _userId = '';
+  String _comment = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,21 +56,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '今日は何時間勉強しましたか？',
+
+            new TextFormField(
+              enabled: true,
+              obscureText: false,
+              decoration: const InputDecoration(
+                hintText:"名前を入力してください",
+                labelText: "名前"
+              ),
             ),
-            Text(
-              '$_counter ' + '時間',
-              style: Theme.of(context).textTheme.headline4,
+            new TextFormField(
+              enabled: true,
+              obscureText: false,
+              decoration: const InputDecoration(
+                hintText: "やった事を入力してくだい",
+                labelText:"やった事"
+              ),
             ),
+            RaisedButton(
+              onPressed: _submission,
+              child: Text('送信'),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+  void _submission() {
+    var request = new commentRequest(userId: this._userId, comment: this._comment);
+    var url = "http://127.0.0.0/commentStudyLog";
+    print(request);
+    print(url);
+  }
+
 }
