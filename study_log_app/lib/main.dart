@@ -27,15 +27,22 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class commentRequest {
+  final int userId;
+  final String comment;
+  commentRequest({
+    this.userId,
+    this.comment,
+  });
+  Map<String, dynamic> toJson() => {
+    'name': userId,
+    'comment': comment,
+  };
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  // static int _userId;
+  // static String _comment;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,24 +50,79 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '今日は何時間勉強しましたか？',
-            ),
-            Text(
-              '$_counter ' + '時間',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: Container(
+          padding: const EdgeInsets.all(50.0),
+          child: Column(
+            children: <Widget>[
+              new TextFormField(
+                enabled: true,
+                obscureText: false,
+                decoration: const InputDecoration(
+                    hintText:"名前を入力してください",
+                    labelText: "名前"
+                ),
+              ),
+              SizedBox(height: 20.0),
+              new TextFormField(
+                enabled: true,
+                obscureText: false,
+                decoration: const InputDecoration(
+                    hintText: "やった事を入力してくだい",
+                    labelText:"やった事"
+                ),
+              ),
+              SizedBox(height: 20.0),
+              ButtonTheme(
+                minWidth: 20.0,
+                height:40.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: _submission,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.send,),
+                          SizedBox(width: 10.0,),
+                          Text("送信")
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20.0,),
+                    ElevatedButton(
+                      onPressed: _getText,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('一覧'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      )
     );
+  }
+  void _submission() {
+    // var request = new commentRequest(userId: this._userId, comment: this._comment);
+    var url = "http://localhost:8080/commentStudyLog";
+    // print(request);
+    print(url);
+  }
+
+  void _getText() {
+    var url = "http://localhost:8080/";
+    print(url);
   }
 }
