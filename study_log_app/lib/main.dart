@@ -78,9 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
+                    ElevatedButton(
                       onPressed: _submission,
-                      color: Colors.blue,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.send,),
@@ -90,9 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(width: 20.0,),
-                    FlatButton(
+                    ElevatedButton(
                       onPressed: _getText,
-                      color: Colors.grey,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       child: const Text('一覧'),
                     ),
                   ],
