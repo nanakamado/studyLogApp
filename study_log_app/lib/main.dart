@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
+                    FlatButton(
                       onPressed: _submission,
                       color: Colors.blue,
                       child: Row(
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     SizedBox(width: 20.0,),
-                    RaisedButton(
+                    FlatButton(
                       onPressed: _getText,
                       color: Colors.grey,
                       child: const Text('一覧'),
