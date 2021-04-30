@@ -28,7 +28,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class commentRequest {
-  final String userId;
+  final int userId;
   final String comment;
   commentRequest({
     this.userId,
@@ -43,8 +43,6 @@ class commentRequest {
 class _MyHomePageState extends State<MyHomePage> {
   String _userId = '';
   String _comment = '';
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,39 +50,69 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-            new TextFormField(
-              enabled: true,
-              obscureText: false,
-              decoration: const InputDecoration(
-                hintText:"名前を入力してください",
-                labelText: "名前"
+        child: Container(
+          padding: const EdgeInsets.all(50.0),
+          child: Column(
+            children: <Widget>[
+              new TextFormField(
+                enabled: true,
+                obscureText: false,
+                decoration: const InputDecoration(
+                    hintText:"名前を入力してください",
+                    labelText: "名前"
+                ),
               ),
-            ),
-            new TextFormField(
-              enabled: true,
-              obscureText: false,
-              decoration: const InputDecoration(
-                hintText: "やった事を入力してくだい",
-                labelText:"やった事"
+              SizedBox(height: 20.0),
+              new TextFormField(
+                enabled: true,
+                obscureText: false,
+                decoration: const InputDecoration(
+                    hintText: "やった事を入力してくだい",
+                    labelText:"やった事"
+                ),
               ),
-            ),
-            RaisedButton(
-              onPressed: _submission,
-              color: Colors.blue,
-              child: const Text('送信'),
-            )
-          ],
+              SizedBox(height: 20.0),
+              ButtonTheme(
+                minWidth: 20.0,
+                height:40.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: _submission,
+                      color: Colors.blue,
+                      child: Row(
+                        children: <Widget>[
+                          Icon(Icons.send,),
+                          SizedBox(width: 10.0,),
+                          Text("送信")
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20.0,),
+                    RaisedButton(
+                      onPressed: _getText,
+                      color: Colors.grey,
+                      child: const Text('一覧'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      )
     );
   }
   void _submission() {
     // var request = new commentRequest(userId: this._userId, comment: this._comment);
-    var url = "http://127.0.0.0/commentStudyLog";
+    var url = "http://localhost:8080/commentStudyLog";
+    // print(request);
+    print(url);
+  }
+
+  void _getText() {
+    var url = "http://localhost:8080/";
     print(url);
   }
 
