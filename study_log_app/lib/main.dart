@@ -41,8 +41,8 @@ class commentRequest {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _userId = '';
-  String _comment = '';
+  // static int _userId;
+  // static String _comment;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,5 +115,4 @@ class _MyHomePageState extends State<MyHomePage> {
     var url = "http://localhost:8080/";
     print(url);
   }
-
 }
