@@ -122,14 +122,16 @@ class _MyHomePageState extends State<MyHomePage> {
     print(url);
   }
   Future<void> _getText() async {
-    final url = "http://localhost:8080/commentStudyLogs";
-    final response = await http.get(url);
+    var getUrl = "http://localhost:8080/commentStudyLogs";
+    print(getUrl);
+    var response = await http.get(Uri.parse(getUrl));
     if (response.statusCode == 200) {
-      var jsonResponse = json.decode(response.body);
-      final imageUrl = jsonResponse['sprites']['front_default'];
-      setState(() {
-        imageUrls.add(imageUrl);
-      });
+      print(response.body);
+      // var jsonResponse = json.decode(response.body);
+      // final imageUrl = jsonResponse['sprites']['front_default'];
+      // setState(() {
+      //   imageUrls.add(imageUrl);
+      // });
     } else {
       throw Exception('Failed to fetch image URL');
     }
