@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -120,9 +121,20 @@ class _MyHomePageState extends State<MyHomePage> {
     // print(request);
     print(url);
   }
-
-  void _getText() {
-    var url = "http://localhost:8080/";
-    print(url);
+  Future<void> _getText() async {
+    var getUrl = "http://localhost:8080/commentStudyLogs";
+    print(getUrl);
+    var response = await http.get(Uri.parse(getUrl));
+    if (response.statusCode == 200) {
+      print(response.body);
+      // var jsonResponse = json.decode(response.body);
+      // final imageUrl = jsonResponse['sprites']['front_default'];
+      // setState(() {
+      //   imageUrls.add(imageUrl);
+      // });
+    } else {
+      throw Exception('Failed to fetch image URL');
+    }
   }
+
 }
